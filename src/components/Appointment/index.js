@@ -1,5 +1,5 @@
 import React from "react";
-import "/Users/ss/lighthouse/scheduler/src/components/Appointment/styles.scss";
+import "./styles.scss";
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
@@ -7,6 +7,7 @@ import useVisualMode from "hooks/useVisualMode";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
@@ -91,6 +92,13 @@ export default function Appointment(props) {
         />
       )}
       {mode === DELETING && <Status message="Deleting" />}
+      {mode === ERROR_DELETE && (
+        <Error message="Error Deleting Appointment" onClose={() => back()} />
+      )}
+
+      {mode === ERROR_SAVE && (
+        <Error message="Error Saving Appointment" onClose={() => back()} />
+      )}
     </article>
   );
 }
